@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'yinni boshlash</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+        }
+        h1 {
+            color: #fdd835;
+        }
+
+        table {
+            margin-top: 20px;
+        }
+
+        thead {
+            background-color: #333;
+        }
+
+        .table-dark {
+            background-color: #212529;
+        }
+
+        .btn-secondary {
+            background-color: #757575;
+            border: none;
+        }
+
+        .custom-select {
+            margin-right: 10px;
+        }
+
+        .custom-control-label::before {
+            background-color: #757575;
+        }
+
+        .custom-control-input:checked~.custom-control-label::before {
+            background-color: #fdd835;
+        }
+
+        .text-primary {
+            color: #2196f3 !important;
+        }
+
+        .text-danger {
+            color: #f44336 !important;
+        }
+
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.trueachievements.com/customimages/069010.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader .spinner-border {
+            width: 7rem;
+            height: 7rem;
+            color: #fdd835;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                document.getElementById('loader').style.display = 'none';
+            }, 3000);
+
+            setTimeout(function () {
+                const buttons = document.querySelectorAll('.btn-primary');
+                buttons.forEach(button => {
+                    button.classList.remove('btn-primary');
+                    button.classList.add('btn-success');
+                    button.innerHTML = '<span class="spinner-border spinner-border-sm d-none" aria-hidden="true"></span> Ulandi <i class="fas fa-check ml-2"></i>';
+                });
+            }, 6000);
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- <audio autoplay>
+        <source src="{% static 'audio/123.mp3' %}" type="audio/mpeg">
+    </audio> -->
+    
+    <div id="loader" class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Kuting...</span>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <table class="table table-bordered" style="color: white;">
+            <thead>
+                <tr>
+                    <th>
+                        ESP 32 (Qurol 1)
+                    </th>
+                    <th>
+                        <button class="btn btn-primary" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        </button>
+                    </th>
+                    <th>
+                        <button class="btn btn-outline-success">
+                            Yaroqli
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        ESP 32 (Qalqon 1)
+                    </td>
+                    <td style="width: 30%;">
+                        <button class="btn btn-primary" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-success">
+                            Yaroqli
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ESP 32 (Qalqon 2)
+                    </td>
+                    <td style="width: 30%;">
+                        <button class="btn btn-primary" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-success">
+                            Yaroqli
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ESP 32 (Qurol 2)
+                    </td>
+                    <td style="width: 30%;">
+                        <button class="btn btn-primary" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-success">
+                            Yaroqli
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Jami <span style="color: red;">4</span> ta qurilma aniqlandi</h2>
+        <h3><span style="color: #fdd835;">2</span> ta o'yinchi yaratishingiz mumkin</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post"> {% csrf_token %}
+                    <label>1-o'yinchi ismi</label>
+                    <input name="name1" type="text" class="form-control" required/>
+        
+                    <label>2-o'yinchi ismi</label>
+                    <input name="name2" type="text" class="form-control" req/>
+                    <input class="btn btn-primary mt-3 w-100" type="submit" value="Boshlash >>>">
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="text-center mb-3">
+                    <select class="custom-select w-25">
+                        <option selected>O'yin turi</option>
+                        <option value="1">1x1</option>
+                        <option value="2">Zombie</option>
+                        <option value="3">Guruh</option>
+                    </select>
+                    <select class="custom-select w-25">
+                        <option selected>5 daqiqa</option>
+                        <option value="1">10 daqiqa</option>
+                        <option value="2">15 daqiqa</option>
+                    </select>
+                    <div class="custom-control custom-checkbox d-inline-block ml-2">
+                        <input type="checkbox" class="custom-control-input" id="orderByRatio">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
